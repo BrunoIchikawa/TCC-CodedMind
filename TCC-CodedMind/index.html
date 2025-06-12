@@ -106,8 +106,8 @@
         }
 
         .equipe {
-            margin-bottom: 10%;
-            margin-top: 5%;
+            width: 70%;
+            margin: 0 auto;
         }
 
         .carousel-container {
@@ -123,7 +123,7 @@
         }
 
         .slide {
-            max-width: 100%;
+            width: 100%;
             display: flex;
             justify-content: center;
             gap: 20px;
@@ -410,11 +410,15 @@
             flex-direction: column;
         }
 
+
+        .carousel-container-portifolio{
+            width: 80%;
+        }
         .portfolio h2 {
             margin-bottom: 30px;
         }
 
-        .projects {
+        .project {
             display: flex;
             justify-content: space-between;
             gap: 20px;
@@ -652,7 +656,8 @@
             flex-wrap: wrap;
             gap: 30px;
             padding: 15px 25px;
-
+           align-items: center;
+           justify-content: center;
         }
 
         .priv {
@@ -670,7 +675,7 @@
             text-align: center;
             background: #A2BEDC;
             border-right: 1px solid #ddd;
-            width: 30px;
+            width: 50%;
             height: 250px;
         }
 
@@ -741,10 +746,7 @@
                 flex-direction: column;
             }
 
-            .project {
-               
-            }
-
+           
 
             header {
                 display: none;
@@ -1048,7 +1050,7 @@
         <div class="intro-text">
             <h1>Olá, somos a <span>CodedMind</span></h1>
             <p>Codificamos suas ideias, trazendo soluções para seu negócio.</p>
-            <button class="glow-on-hover" type="button"><a href="https://w.app/yVISJP">Solicitar orçamento</a> </button>
+            <button class="glow-on-hover" type="button"><a href="https://w.app/8zdh9n" target="_blank">Solicitar orçamento</a> </button>
         </div>
     </section>
 
@@ -1133,7 +1135,7 @@
 
     <section id="portfolio" class="portfolio">
         <h2>Portfólio</h2>
-        <div class="carousel-container">
+        <div class="carousel-container-portifolio">
 
             <div class="distancia">
                 <div data-aos="fade-up" class="project project2">
@@ -1450,42 +1452,47 @@
         }
 
         document.addEventListener('DOMContentLoaded', function () {
-            const carouselSlide = document.getElementById('carousel-slide');
-            const slides = document.querySelectorAll('.slide');
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
+    const carouselSlide = document.getElementById('carousel-slide');
+    const slides = document.querySelectorAll('.slide');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
 
-            let counter = 0;
-            const size = slides[0].clientWidth;
-            const totalSlides = slides.length;
+    let counter = 0;
+    const size = slides[0].clientWidth;
+    const totalSlides = slides.length;
 
-            carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+    // Posição inicial
+    carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
 
-            nextBtn.addEventListener('click', function () {
-                if (counter >= totalSlides - 1) {
-                    counter = 0; 
-                } else {
-                    counter++;
-                }
-                carouselSlide.style.transition = "transform 0.5s ease-in-out";
-                carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
-            });
+    // Botão próximo
+    nextBtn.addEventListener('click', function () {
+        if (counter >= totalSlides - 1) {
+            counter = 0;
+        } else {
+            counter++;
+        }
+        carouselSlide.style.transition = "transform 0.5s ease-in-out";
+        carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+    });
 
-            prevBtn.addEventListener('click', function () {
-                if (counter <= 0) {
-                    counter = totalSlides - 1; 
-                    counter--;
-                }
-                carouselSlide.style.transition = "transform 0.5s ease-in-out";
-                carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
-            });
+    // Botão anterior - CORREÇÃO AQUI
+    prevBtn.addEventListener('click', function () {
+        if (counter <= 0) {
+            counter = totalSlides - 1;
+        } else {
+            counter--;
+        }
+        carouselSlide.style.transition = "transform 0.5s ease-in-out";
+        carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+    });
 
-            window.addEventListener('resize', function () {
-                const newSize = slides[0].clientWidth;
-                carouselSlide.style.transition = "none";
-                carouselSlide.style.transform = 'translateX(' + (-newSize * counter) + 'px)';
-            });
-        });</script>
+    // Redimensionamento
+    window.addEventListener('resize', function () {
+        const newSize = slides[0].clientWidth;
+        carouselSlide.style.transition = "none";
+        carouselSlide.style.transform = 'translateX(' + (-newSize * counter) + 'px)';
+    });
+});;</script>
 </body>
 
 </html>
